@@ -69,7 +69,8 @@ const config = {
   },
   plugins: [
     new ESLintPlugin({
-      extensions: ['js', 'jsx']
+      extensions: ['js', 'jsx'],
+      exclude: 'node_modules'
     }),
     new MiniCssExtractPlugin({
       filename: 'css/style.css',
@@ -79,9 +80,6 @@ const config = {
     new CopyWebpackPlugin({
       patterns: [
         { from: `${__dirname}/client/index.html`, to: 'index.html' }
-        // { from: 'client/assets/images', to: 'assets/images' },
-        // { from: 'assets/fonts', to: 'fonts' },
-        // { from: 'assets/manifest.json', to: 'manifest.json' }
       ]
     })
   ]

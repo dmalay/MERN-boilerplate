@@ -23,7 +23,7 @@
   "globals": {
     "axios": true,
     "globalThis": true,
-    "ENABLE_SOCKETS": true
+    "SOCKETS_ENABLE": true
   },
   "rules": {
     "space-before-function-paren": "off",
@@ -69,7 +69,6 @@
     "max-classes-per-file": "warn",
     "react/jsx-props-no-spreading": ["off"],
     "camelcase": "off",
-    "no-console": "off"
-
+    "no-console":"off"
   }
 }

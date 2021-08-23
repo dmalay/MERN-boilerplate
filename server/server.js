@@ -1,20 +1,23 @@
-// import options from './config'
+import express from 'express'
+import cors from 'cors'
+import path from 'path'
+import http from 'http'
 
-const express = require('express')
-const cors = require('cors')
-const path = require('path')
-const http = require('http')
+import options from './config'
+import mongooseService from './services/mongoose'
 
 const app = express()
-const port = process.env.PORT || 5001
 
-// const PORT = options.port
+const PORT = options.port
+
+mongooseService.connect()
 
 const middleware = [
   cors(),
   express.urlencoded({ limit: '50mb', extended: true, parameterLimit: 50000 }),
   express.json({ limit: '50mb', extended: true }),
 ]
+
 middleware.forEach((it) => app.use(it))
 
 if (process.env.NODE_ENV === 'production') {
@@ -26,7 +29,7 @@ if (process.env.NODE_ENV === 'production') {
 
 const server = http.createServer(app)
 
-server.listen(port, (error) => {
+server.listen(PORT, (error) => {
   if (error) throw error
-  console.log(`listening on port:${port}`)
+  console.log(`listening on port:${PORT}`)
 })

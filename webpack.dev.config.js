@@ -1,32 +1,39 @@
 require('dotenv').config()
 
-const path = require('path')
 const { merge } = require('webpack-merge')
-
+const path = require('path')
 const common = require('./webpack.common.config')
+
+const CLIENT_PORT = 8088
 
 const config = {
   mode: 'development',
   optimization: {
-    usedExports: true
+    usedExports: true,
+    moduleIds: 'named',
+    chunkIds: 'named'
+  },
+  stats: {
+    moduleAssets: false,
   },
   devServer: {
     hot: true,
     static: {
-      directory: path.join(__dirname, 'build')
+      directory: path.join(__dirname, 'build'),
+      watch: true,
     },
-    port: 8088,
+    port: CLIENT_PORT,
     host: 'localhost',
     proxy: {
       target: 'http://localhost:5001',
       context: ['/api', '/ws']
     },
-    // webSocketServer: 'ws',
+
     historyApiFallback: true,
     client: {
       overlay: {
         warnings: false,
-        errors: true,
+        errors: true
       },
     },
   },
