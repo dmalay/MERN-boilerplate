@@ -1,3 +1,3 @@
-body {
-    background: gray;
-  }
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";

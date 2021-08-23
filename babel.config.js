@@ -3,4 +3,7 @@ module.exports = {
     '@babel/env',
     '@babel/react',
   ],
+  plugins: [
+    '@babel/plugin-transform-runtime'
+  ]
 }

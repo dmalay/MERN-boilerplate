@@ -21,10 +21,6 @@
     "es6": true
   },
   "globals": {
-    "IS_PROD": true,
-    "STRIPE_PUBLIC_KEY": true,
-    "SENTRY_CLIENT_URL": true,
-    "deferredPrompt": true,
     "axios": true,
     "globalThis": true,
     "ENABLE_SOCKETS": true
@@ -72,6 +68,8 @@
     "jsx-a11y/no-autofocus": "warn",
     "max-classes-per-file": "warn",
     "react/jsx-props-no-spreading": ["off"],
-    "camelcase": "off"
+    "camelcase": "off",
+    "no-console": "off"
+
   }
 }

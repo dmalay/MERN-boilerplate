@@ -1,43 +1,28 @@
-const { resolve } = require('path')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const ESLintPlugin = require('eslint-webpack-plugin')
+require('dotenv').config()
+
+const path = require('path')
+const { merge } = require('webpack-merge')
+
+const common = require('./webpack.common.config')
 
 const config = {
-  entry: './client/index.js',
   mode: 'development',
-  output: {
-    filename: 'js/[name].bundle.js',
-    path: resolve(__dirname, 'build'),
-    publicPath: '/',
-  },
-  module: {
-    rules: [
-      {
-        test: /\.(js|jsx)$/,
-        loader: 'babel-loader',
-        exclude: /node_modules/,
-      },
-      {
-        test: /\.(css|scss)$/,
-        use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-            options: {
-              publicPath: '../',
-            },
-          },
-          'css-loader',
-          'sass-loader',
-        ],
-      },
-    ],
+  optimization: {
+    usedExports: true
   },
   devServer: {
     hot: true,
-    // contentBase: resolve(__dirname, 'build'),
-    port: 8000,
+    static: {
+      directory: path.join(__dirname, 'build')
+    },
+    port: 8088,
     host: 'localhost',
+    proxy: {
+      target: 'http://localhost:5001',
+      context: ['/api', '/ws']
+    },
+    // webSocketServer: 'ws',
+    historyApiFallback: true,
     client: {
       overlay: {
         warnings: false,
@@ -45,22 +30,6 @@ const config = {
       },
     },
   },
-  plugins: [
-    new ESLintPlugin({
-      extensions: ['js', 'jsx']
-    }),
-    new CopyWebpackPlugin({
-      patterns: [
-        {
-          from: `${__dirname}/client/index.html`,
-          to: 'index.html',
-        },
-      ],
-    }),
-    new MiniCssExtractPlugin({
-      filename: 'css/style.css',
-    }),
-  ],
 }
 
-module.exports = config
+module.exports = merge(common, config)
