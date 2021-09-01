@@ -13,6 +13,7 @@ const config = {
     moduleIds: 'named',
     chunkIds: 'named'
   },
+  devtool: 'eval-source-map',
   stats: {
     moduleAssets: false,
   },
@@ -26,14 +27,15 @@ const config = {
     host: 'localhost',
     proxy: {
       target: 'http://localhost:5001',
-      context: ['/api', '/ws']
+      context: ['/api', '/socket.io'],
+      ws: true,
     },
-
+    webSocketServer: 'ws',
     historyApiFallback: true,
     client: {
       overlay: {
         warnings: false,
-        errors: true
+        errors: true,
       },
     },
   },

@@ -16,6 +16,11 @@ const config = {
   module: {
     rules: [
       {
+        test: /\.js$/,
+        enforce: 'pre',
+        use: ['source-map-loader'],
+      },
+      {
         test: /\.(js|jsx)$/i,
         exclude: /node_modules/,
         use: {

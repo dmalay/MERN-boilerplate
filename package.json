@@ -1,8 +1,8 @@
 {
   "name": "mern-boilerplate",
   "version": "1.0.0",
-  "main": "index.js",
-  "author": "DMalay",
+  "main": "start.js",
+  "author": "Dmitry Malay <dmalay1228@gmail.com>",
   "license": "MIT",
   "scripts": {
     "dev": "yarn run watch:server & yarn run watch:client",
